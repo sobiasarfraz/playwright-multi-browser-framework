@@ -1,0 +1,46 @@
+name: Playwright-python-multi-browser
+
+# Trigger workflow on push or pull request to main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.13]
+        browser: [chromium, firefox, webkit]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        playwright install
+
+    - name: Run Tests with HTML Report
+      env:
+        BROWSER: ${{ matrix.browser }}
+      run: |
+        pytest --maxfail=1 --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
+
+    - name: Upload HTML Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: html-report-${{ matrix.browser }}
+        path: report.html

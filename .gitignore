@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Logs, Screenshots, Videos (generated files)
+logs/
+screenshots/
+videos/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# pytest cache
+.pytest_cache/
