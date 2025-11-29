@@ -301,17 +301,33 @@ def test_new_tab_button_opens_broken_site(hover):
     assert "pavantestingtools.com" in url or "error" in url or url in ["", "about:blank", "blank"], f"Unexpected URL: {url}"
     new_tab.close()      # negative: New Tab opens error page
 
-def test_popup_window(hover):
-    popup = hover.open_new_window()
-    popup.wait_for_url("https://www.selenium.dev/", timeout=5000)
-    expect(popup).to_have_url("https://www.selenium.dev/")
-    popup.close()
 
-def test_popup_window_opens_selenium_site(hover, page):
-    popup = hover.open_new_window()
-    popup.wait_for_function("document.title.includes('Selenium')", timeout=5000)
-    assert "Selenium" in popup.title()
-    popup.close()
+def test_start_button_changes_to_stop(hover):
+    # Positive: Start exists, click → becomes Stop
+    expect(hover.start_btn).to_be_visible()
+    assert hover.get_button_text() == "START"
+
+    hover.click_start_stop_button()
+    expect(hover.stop_btn).to_be_visible()
+    assert hover.get_button_text() == "STOP"
+    logging.info("test passed: START button changed to STOP")
+
+def test_stop_button_changes_back_to_start(hover):
+    # Edge: From Stop → click → back to Start
+    while hover.get_button_text() == "STOP":
+        hover.click_start_stop_button()
+
+        # 2. Now it's START → click once → becomes STOP
+    hover.click_start_stop_button()
+    expect(hover.stop_btn).to_be_visible()
+    assert hover.get_button_text() == "STOP"
+
+    hover.click_start_stop_button()
+    expect(hover.start_btn).to_be_visible()
+    assert hover.get_button_text() == "START"
+    logging.info("test passed: STOP button changed to START")
+
+
 
 
 
