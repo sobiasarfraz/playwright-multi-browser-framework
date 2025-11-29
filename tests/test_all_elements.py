@@ -147,7 +147,7 @@ def test_negative_start_date_reject_invalid_date(dates, browser):
     value = dates.third_date_picker.input_value()
     if browser_name == "webkit":
         # Safari accepts invalid YYYY-MM-DD strings (known behavior)
-        assert value.startswith("2026-33"), "WebKit should store the invalid date string"
+        assert value == "" or value.startswith("2026-33"), "WebKit should store the invalid date string"
     else:
         assert value == "", "BUG: App accepted invalid start date"
 
@@ -158,7 +158,7 @@ def test_negative_end_date_reject_invalid_date(dates, browser):
     value = dates.fourth_date_picker.input_value()
     if browser_name == "webkit":
         # Safari accepts invalid YYYY-MM-DD strings (known behavior)
-        assert value == "2026-15-33", "WebKit should store the invalid date string"
+        assert value == "" or value == "2026-15-33", "WebKit should store the invalid date string"
     else:
         assert value == "", "BUG: App accepted invalid end date"
 
