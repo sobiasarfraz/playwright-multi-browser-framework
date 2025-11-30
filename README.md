@@ -18,7 +18,7 @@ Videos, screenshots, and logs committed to main — HTML report available as Git
 - GitHub Actions CI (`.github/workflows/ci.yml`)  
 - Self-contained HTML report
 
----
+
 ## Tech Stack
 - Playwright (Python sync API)  
 - pytest + pytest-html  
