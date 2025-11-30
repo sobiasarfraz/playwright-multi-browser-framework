@@ -7,6 +7,7 @@ Clean Playwright + Python test suite.
 Full Page Object Model, data-driven flows, and real negative/edge-case coverage.  
 Videos, screenshots, and logs committed to main — HTML report available as GitHub Actions artifact.
 ---
+
 ##  Highlights
 - Cross-browser testing (Chromium · Firefox · WebKit)  
 - Page Object Model with reusable fixtures  
