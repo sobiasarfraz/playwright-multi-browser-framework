@@ -19,11 +19,6 @@ venv/
 *.iml
 *.iws
 
-# Logs, Screenshots, Videos (generated files)
-logs/
-screenshots/
-videos/
-
 # OS Files
 .DS_Store
 Thumbs.db
