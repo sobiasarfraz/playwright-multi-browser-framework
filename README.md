@@ -43,7 +43,7 @@ Every major element is tested with **positive + deliberate negative/edge cases**
 ****52 tests. 100% green across all browsers.****
 
 
----
+
 
 ### Project Structure
 ```plain text
