@@ -1,12 +1,12 @@
 # Playwright Python Multi-Browser  Automation Framework
 [Automation Testing Practice](https://testautomationpractice.blogspot.com/)
 
+---
 Clean Playwright + Python test suite.  
 52 stable tests across Chromium, Firefox, and WebKit.  
 Full Page Object Model, data-driven flows, and real negative/edge-case coverage.  
 Videos, screenshots, and logs committed to main — HTML report available as GitHub Actions artifact.
 ---
-
 ##  Highlights
 - Cross-browser testing (Chromium · Firefox · WebKit)  
 - Page Object Model with reusable fixtures  
@@ -86,10 +86,9 @@ Add `--html=reports/report.html --self-contained-html` to any command when you w
 All videos, screenshots, and logs are committed to the main branch.
 HTML report is available as a GitHub Actions artifact.
 
----
 All code written and debugged by me.  
 No shortcuts. No AI fillers.  
 Just clean, working Playwright.
----
-**Sobia Sarfraz**  
-**November 2025**
+
+-- Sobia Sarfraz  
+November 2025
