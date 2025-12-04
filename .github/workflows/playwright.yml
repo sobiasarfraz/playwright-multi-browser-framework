@@ -35,8 +35,14 @@ jobs:
         env:
           BROWSER: ${{ matrix.browser }}
         run: |
-          docker run --rm -e BROWSER=${{ matrix.browser }} playwright-project \
-          pytest --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
+          mkdir -p report
+          docker run --rm \
+            -e BROWSER=${{ matrix.browser }} \
+            -v ${{ github.workspace }}/report:/playwright/report \
+            playwright-project \
+            pytest --disable-warnings --capture=tee-sys --html=/playwright/report/report.html --self-contained-html
+      #    docker run --rm -e BROWSER=${{ matrix.browser }} playwright-project \
+      #    pytest --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
           
 
       # -------------------------------
