@@ -14,6 +14,11 @@ build/
 env/
 venv/
 
+#videos, screenshots, logs
+videos/
+screenshot/
+Logs/
+
 # PyCharm
 .idea/
 *.iml
