@@ -35,7 +35,7 @@ jobs:
         env:
           BROWSER: ${{ matrix.browser }}
         run: |
-          docker run --rm -e BROWSER=${{ matrix.browser }} playwright-project
+          docker run --rm -e BROWSER=${{ matrix.browser }} playwright-project --maxfail=1 --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
           
 
       # -------------------------------
@@ -57,8 +57,8 @@ jobs:
       #  run: |
       #    pytest --maxfail=1 --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
 
-      #- name: Upload HTML Report
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: html-report-${{ matrix.browser }}
-      #    path: report.html
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report-${{ matrix.browser }}
+          path: report.html
