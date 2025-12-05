@@ -12,17 +12,17 @@ Videos, screenshots, and logs committed to main — HTML report available as Git
 - Cross-browser testing (Chromium · Firefox · WebKit)  
 - Page Object Model with reusable fixtures  
 - Data-driven testing via `@pytest.mark.parametrize`  
+- GitHub Actions CI with Dockerized execution
 - Full-session video recording (one per browser)  
 - Selective manual screenshots at critical steps  
-- Structured logging (`/Logs` folder)  
-- GitHub Actions CI (`.github/workflows/ci.yml`)  
-- Self-contained HTML report
-
+- Structured logging (`/Logs` folder)   
+- HTML report uploaded as CI artifact
 
 ## Tech Stack
 - Playwright (Python sync API)  
 - pytest + pytest-html  
 - Python 3.11+
+- Docker(optional containerized execution)
 
 ##  Test Coverage
 Every major element is tested with **positive + deliberate negative/edge cases**:
@@ -54,28 +54,30 @@ screenshots/          → Manual screenshots at key steps
 logs/                 → Structured execution logs
 .github/              → GitHub Actions workflow
 conftest.py           → Browser, page, and video fixtures
+Dockerfile            → Containerized execution
 screenshot_helper.py  → Screenshot utility
 logging_helper.py     → Custom logging setup
 README.md
 requirements.txt 
 ```
-### How to Run
+### Running Tests Locally (Without Docker)
+#### Install dependencies
 ```plain text
 pip install -r requirements.txt
 playwright install
 ```
-### All browsers (default)
+#### Run all browsers
 ```
-pytest -v --html=reports/report.html --self-contained-html
+pytest -v -s
 ```
 
 #### Single browser only
 
-| Browser   | Windows PowerShell                                | macOS / Linux / Git Bash                  |
-|-----------|----------------------------------------------------|-------------------------------------------|
-| Chrome    | `$env:BROWSER="chromium"; pytest -v`              | `BROWSER=chromium pytest -v`              |
-| Firefox   | `$env:BROWSER="firefox"; pytest -v`               | `BROWSER=firefox pytest -v`               |
-| Safari    | `$env:BROWSER="webkit"; pytest -v`                | `BROWSER=webkit pytest -v`                |
+| Browser   | Windows PowerShell                      | macOS / Linux / Git Bash        |
+|-----------|-----------------------------------------|---------------------------------|
+| Chrome    | `$env:BROWSER="chromium"; pytest -v -s` | `BROWSER=chromium pytest -v -s` |
+| Firefox   | `$env:BROWSER="firefox"; pytest -v -s`  | `BROWSER=firefox pytest -v -s`  |
+| Safari    | `$env:BROWSER="webkit"; pytest -v -s`   | `BROWSER=webkit pytest -v -s`   |
 
 Add `--html=reports/report.html --self-contained-html` to any command when you want the HTML report.
 ### Output
@@ -84,12 +86,39 @@ Add `--html=reports/report.html --self-contained-html` to any command when you w
 - Manual screenshots at key steps (screenshots/)
 - Structured log files (/Log)
 
+### Running Tests Using Docker (Recommended)
+#### build Docker image 
+```
+docker build -t playwright-project .
+```
+#### Run Tests (All Browsers)
+```
+docker run --rm -it playwright-project
+```
+#### Run Tests and also capture videos/screenshots/logs locally
+```
+docker run --rm \
+  -v "$(pwd)/videos:/playwright/videos" \
+  -v "$(pwd)/screenshots:/playwright/screenshot" \
+  -v "$(pwd)/logs:/playwright/Logs" \
+  playwright-project
+  ```
+This mounts your local folders so videos, screenshots and logs are saved.
+
+### GitHub Actions CI
+
+ - Runs tests inside Docker for all 3 browsers
+
+- Uploads HTML report as artifact
+
+- No duplicated local testing (CI runs only the Docker container)
+
+
 All videos, screenshots, and logs are committed to the main branch.
-HTML report is available as a GitHub Actions artifact.
 
 All code written and debugged by me.  
 No shortcuts. No AI fillers.  
 Just clean, working Playwright.
 
--- Sobia Sarfraz  
-November 2025
+— Sobia Sarfraz  
+December 2025
