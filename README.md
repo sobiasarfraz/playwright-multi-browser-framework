@@ -60,7 +60,9 @@ logging_helper.py     → Custom logging setup
 README.md
 requirements.txt 
 ```
-### Running Tests Locally (Without Docker)
+
+## Running Tests Locally (Without Docker)
+
 #### Install dependencies
 ```plain text
 pip install -r requirements.txt
@@ -86,7 +88,8 @@ Add `--html=reports/report.html --self-contained-html` to any command when you w
 - Manual screenshots at key steps (screenshots/)
 - Structured log files (/Log)
 
-### Running Tests Using Docker (Recommended)
+## Running Tests Using Docker (Recommended)
+
 #### build Docker image 
 ```
 docker build -t playwright-project .
