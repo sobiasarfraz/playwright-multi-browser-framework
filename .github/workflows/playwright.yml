@@ -59,6 +59,11 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Upload report to S3
+        run: |
+          aws s3 cp report/report.html \
+          s3://playwright-automation-reports-sobia/${{ matrix.browser }}/report.html
+
 
       #    docker run --rm -e BROWSER=${{ matrix.browser }} playwright-project \
       #    pytest --disable-warnings --capture=tee-sys --html=report.html --self-contained-html
