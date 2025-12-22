@@ -3,9 +3,8 @@
 
 
 Clean Playwright + Python test suite.  
-52 stable tests across Chromium, Firefox, and WebKit.  
-Full Page Object Model, data-driven flows, and real negative/edge-case coverage.  
-Videos, screenshots, and logs committed to main — HTML report available as GitHub Actions artifact.
+52 stable tests across Chromium, Firefox, and WebKit using a full Page Object Model, reusable fixtures/helpers, data-driven flows with deliberate real negative/edge-case coverage.
+Integrated with Docker, GitHub Actions CI, and AWS (S3, CloudWatch, IAM/OIDC) for realistic, production-style execution.
 
 
 ##  Highlights
@@ -14,44 +13,41 @@ Videos, screenshots, and logs committed to main — HTML report available as Git
 - Data-driven testing via `@pytest.mark.parametrize`  
 - GitHub Actions CI with Dockerized execution
 - Full-session video recording (one per browser)  
-- Selective manual screenshots at critical steps  
-- Structured logging (`/Logs` folder)   
-- HTML report uploaded as CI artifact
+- Selective manual screenshots at critical steps
+- Structured logging committed locally for visibility, streamed to AWS CloudWatch for EC2 executions
+- HTML reports uploaded as GitHub Actions artifacts and to AWS S3 (CI + cloud runs)
+- AWS integration (S3 reports, CloudWatch logs, secure IAM/OIDC authentication)
 
 ## Tech Stack
 - Playwright (Python sync API)  
 - pytest + pytest-html  
 - Python 3.11+
-- Docker(optional containerized execution)
+- Docker (containerized execution)
+- GitHub Actions (CI pipeline)
+- AWS (S3, CloudWatch, EC2, IAM/OIDC)
 
 ##  Test Coverage
-Every major element is tested with **positive + deliberate negative/edge cases**:
-- Homepage URL & title verification  
-- Full form automation – data-driven (3 valid users) + 6 real negative/edge tests (empty name, invalid email, short phone, special chars, 20→15 char limit, no persistence after refresh)  
-- Radio buttons – selection + cannot be unchecked (real behavior)  
-- Checkboxes – bulk select + individual uncheck verification  
-- Dropdowns – valid selection + option count assertion  
-- All 4 date pickers – valid dates + invalid month/day rejection (WebKit-specific handling)  
-- Static & dynamic tables – row/column counts, header validation, exact cell lookup, non-existent row checks  
-- JavaScript dialogs – alert, confirm (OK/Cancel), prompt (accept/dismiss/empty/bad input) – all flows covered  
-- Hover menu – visibility + both sub-links proven broken (negative tests)  
-- New Tab button – opens + proves external site is dead (real bug found)  
-- Dynamic Start/Stop button – full toggle cycle with proper test isolation (no state leaks)
+Every UI area is tested with **positive + deliberate negative/edge cases**:
 
-****Real bugs found and documented through negative testing— not just happy path.****
+- Homepage: URL and title verification
+- Forms: data-driven valid submissions + 6 negative cases (empty name, invalid email, short phone, special characters, length validation, refresh persistence)
+- Inputs: radio buttons, checkboxes, dropdowns, all 4 date pickers
+- Data: static and dynamic tables (row/column counts, header validation, exact cell lookup, non-existent rows)
+- Behavior: JavaScript dialogs (alert, confirm, prompt), hover menu with broken links confirmed, new tab to dead external site, dynamic Start/Stop toggle with proper state isolation
 
-****52 tests. 100% green across all browsers.****
+Real bugs confirmed through negative testing — not just happy-path validation.
+52 tests — passing across Chromium, Firefox, and WebKit.
 
 
 
 
 ### Project Structure
-```plain text
+```text
 pages/                → Page Objects
 tests/                → All test files
 videos/               → chromium/, firefox/, webkit/ (full session videos)
-screenshots/          → Manual screenshots at key steps
-logs/                 → Structured execution logs
+screenshot/          → Manual screenshots at key steps
+Logs/                 → Structured execution logs
 .github/              → GitHub Actions workflow
 conftest.py           → Browser, page, and video fixtures
 Dockerfile            → Containerized execution
@@ -64,7 +60,7 @@ requirements.txt
 ## Running Tests Locally (Without Docker)
 
 #### Install dependencies
-```plain text
+```text
 pip install -r requirements.txt
 playwright install
 ```
@@ -82,11 +78,6 @@ pytest -v -s
 | Safari    | `$env:BROWSER="webkit"; pytest -v -s`   | `BROWSER=webkit pytest -v -s`   |
 
 Add `--html=reports/report.html --self-contained-html` to any command when you want the HTML report.
-### Output
-- reports/report.html – clean HTML report (GitHub Actions artifact)
-- Full-session videos in videos/chromium/, videos/firefox/, videos/webkit/
-- Manual screenshots at key steps (screenshots/)
-- Structured log files (/Log)
 
 ## Running Tests Using Docker (Recommended)
 
@@ -94,34 +85,27 @@ Add `--html=reports/report.html --self-contained-html` to any command when you w
 ```
 docker build -t playwright-project .
 ```
-#### Run Tests (All Browsers)
+#### Run Tests (default configuration)
 ```
 docker run --rm -it playwright-project
 ```
-#### Run Tests and also capture videos/screenshots/logs locally
+#### Run Tests and capture reports, videos, screenshots, and logs locally
 ```
 docker run --rm \
   -v "$(pwd)/videos:/playwright/videos" \
-  -v "$(pwd)/screenshots:/playwright/screenshot" \
-  -v "$(pwd)/logs:/playwright/Logs" \
+  -v "$(pwd)/screenshot:/playwright/screenshot" \
+  -v "$(pwd)/Logs:/playwright/Logs" \
+  -v "$(pwd)/reports:/playwright/reports" \
   playwright-project
   ```
 This mounts your local folders so videos, screenshots and logs are saved.
 
-### GitHub Actions CI
+### Output
 
- - Runs tests inside Docker for all 3 browsers
+- HTML report uploaded to AWS S3 (permanent) and GitHub Actions artifacts (temporary)
+- Structured execution logs committed to the repository and streamed to **AWS CloudWatch** for EC2 runs
+- Full-session browser videos and screenshots captured per execution (committed for portfolio visibility)
 
-- Uploads HTML report as artifact
-
-- No duplicated local testing (CI runs only the Docker container)
-
-
-All videos, screenshots, and logs are committed to the main branch.
-
-All code written and debugged by me.  
-No shortcuts. No AI fillers.  
-Just clean, working Playwright.
-
+All code written and debugged by me.
 — Sobia Sarfraz  
 December 2025
