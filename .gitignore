@@ -15,7 +15,7 @@ env/
 venv/
 
 #videos, screenshots, logs
-videos/
+#videos/
 screenshot/
 Logs/
 

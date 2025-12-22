@@ -3,8 +3,8 @@ import os
 import logging
 
 def setup_logging():
-    os.makedirs("Logs",exist_ok=True)  #make logs folder,if not exist
-    filename = f"Logs/log_{datetime.now().strftime('%y-%m-%d-%H-%M-%S')}"
+    os.makedirs("logs",exist_ok=True)  #make logs folder,if not exist
+    filename = f"logs/log_{datetime.now().strftime('%y-%m-%d-%H-%M-%S')}.log"
     logging.basicConfig(
         filename=filename,
         level=logging.INFO,
