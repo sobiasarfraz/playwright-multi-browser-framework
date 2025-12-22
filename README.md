@@ -46,8 +46,8 @@ Real bugs confirmed through negative testing — not just happy-path validation.
 pages/                → Page Objects
 tests/                → All test files
 videos/               → chromium/, firefox/, webkit/ (full session videos)
-screenshot/          → Manual screenshots at key steps
-Logs/                 → Structured execution logs
+screenshots/          → Manual screenshots at key steps
+logs/                 → Structured execution logs
 .github/              → GitHub Actions workflow
 conftest.py           → Browser, page, and video fixtures
 Dockerfile            → Containerized execution
@@ -93,8 +93,8 @@ docker run --rm -it playwright-project
 ```
 docker run --rm \
   -v "$(pwd)/videos:/playwright/videos" \
-  -v "$(pwd)/screenshot:/playwright/screenshot" \
-  -v "$(pwd)/Logs:/playwright/Logs" \
+  -v "$(pwd)/screenshots:/playwright/screenshots" \
+  -v "$(pwd)/logs:/playwright/logs" \
   -v "$(pwd)/reports:/playwright/reports" \
   playwright-project
   ```

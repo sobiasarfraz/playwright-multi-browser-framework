@@ -1,0 +1,45 @@
+2025-12-21 21:49:41,461 - INFO - url test
+2025-12-21 21:49:59,526 - INFO - Number of options in dropdown: 7
+2025-12-21 21:49:59,983 - INFO - first selected date is: 12/14/2025
+2025-12-21 21:50:00,718 - INFO - second selected date is: 18/12/2025
+2025-12-21 21:50:00,792 - INFO - third selected date is: 2025-12-11
+2025-12-21 21:50:00,863 - INFO - forth selected date is: 2025-12-16
+2025-12-21 21:50:03,478 - INFO - books table header list: ['BookName', 'Author', 'Subject', 'Price']
+2025-12-21 21:50:03,531 - INFO - performance table,row have chrome text: Chrome7.1 Mbps8.7%41.5 MB0.50 MB/s
+2025-12-21 21:50:03,578 - INFO - performance table, Chrome Memory cell value is: 41.5 MB
+2025-12-21 21:50:03,610 - INFO - performance table, Firefox CPU cell value is: 5.5%
+2025-12-21 21:50:04,087 - INFO - simple alert, message is: I am an alert box!
+2025-12-21 21:50:04,279 - INFO - confirmation alert,message is: Press a button!
+2025-12-21 21:50:04,853 - INFO - prompt box message is: Please enter your name:
+2025-12-21 21:50:07,731 - INFO - test passed: START button changed to STOP
+2025-12-21 21:50:08,293 - INFO - test passed: STOP button changed to START
+2025-12-21 21:50:15,794 - INFO - url test
+2025-12-21 21:50:35,229 - INFO - Number of options in dropdown: 7
+2025-12-21 21:50:35,572 - INFO - first selected date is: 12/14/2025
+2025-12-21 21:50:36,902 - INFO - second selected date is: 18/12/2025
+2025-12-21 21:50:37,052 - INFO - third selected date is: 2025-12-11
+2025-12-21 21:50:37,088 - INFO - forth selected date is: 2025-12-16
+2025-12-21 21:50:42,478 - INFO - books table header list: ['BookName', 'Author', 'Subject', 'Price']
+2025-12-21 21:50:42,546 - INFO - performance table,row have chrome text: Chrome97.6 MB0.03 MB/s7.9%2.3 Mbps
+2025-12-21 21:50:42,608 - INFO - performance table, Chrome Memory cell value is: 97.6 MB
+2025-12-21 21:50:42,680 - INFO - performance table, Firefox CPU cell value is: 7.3%
+2025-12-21 21:50:43,164 - INFO - simple alert, message is: I am an alert box!
+2025-12-21 21:50:43,459 - INFO - confirmation alert,message is: Press a button!
+2025-12-21 21:50:44,126 - INFO - prompt box message is: Please enter your name:
+2025-12-21 21:50:52,100 - INFO - test passed: START button changed to STOP
+2025-12-21 21:50:52,711 - INFO - test passed: STOP button changed to START
+2025-12-21 21:51:02,896 - INFO - url test
+2025-12-21 21:51:22,983 - INFO - Number of options in dropdown: 7
+2025-12-21 21:51:23,737 - INFO - first selected date is: 12/14/2025
+2025-12-21 21:51:24,798 - INFO - second selected date is: 18/12/2025
+2025-12-21 21:51:24,856 - INFO - third selected date is: 2025-12-11
+2025-12-21 21:51:24,890 - INFO - forth selected date is: 2025-12-16
+2025-12-21 21:51:30,784 - INFO - books table header list: ['BookName', 'Author', 'Subject', 'Price']
+2025-12-21 21:51:30,842 - INFO - performance table,row have chrome text: Chrome2.6 Mbps0.38 MB/s86.3 MB3.4%
+2025-12-21 21:51:30,922 - INFO - performance table, Chrome Memory cell value is: 86.3 MB
+2025-12-21 21:51:30,983 - INFO - performance table, Firefox CPU cell value is: 4.3%
+2025-12-21 21:51:31,507 - INFO - simple alert, message is: I am an alert box!
+2025-12-21 21:51:31,818 - INFO - confirmation alert,message is: Press a button!
+2025-12-21 21:51:32,659 - INFO - prompt box message is: Please enter your name:
+2025-12-21 21:51:36,954 - INFO - test passed: START button changed to STOP
+2025-12-21 21:51:37,857 - INFO - test passed: STOP button changed to START
